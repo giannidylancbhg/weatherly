@@ -7,9 +7,9 @@
   padding: 0;
   box-sizing: border-box;
   font: inherit;
-  font-family: "Nunito";
 }
 
 body {
   min-height: 100vh;
+  font-family: "Nunito", sans-serif;
 }
