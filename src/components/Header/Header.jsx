@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg";
 
 export default function Header() {
   return (
-    <header class="header">
+    <header className="header">
       <div class="brand">
         <img src={logo} alt="Weatherly Logo" />
 
