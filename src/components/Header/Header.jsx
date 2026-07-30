@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 export default function Header() {
   return (
     <header className="header">
-      <div class="brand">
+      <div className="brand">
         <img src={logo} alt="Weatherly Logo" />
 
         <form className="searchbar">
