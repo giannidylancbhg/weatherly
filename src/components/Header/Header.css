@@ -56,6 +56,10 @@
   color: var(--text-black);
 }
 
+.search-has-text {
+  color: var(--text-black);
+}
+
 .searchbar button {
   background-color: var(--text-black);
   color: var(--primary-color);
