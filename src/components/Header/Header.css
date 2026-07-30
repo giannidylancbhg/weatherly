@@ -43,6 +43,11 @@
 .searchbar .search-input input {
   border: none;
   width: 100%;
+  font-weight: 700;
+}
+
+.searchbar .search-input input::placeholder {
+  font-weight: 600;
 }
 
 .searchbar .search-input input:focus {
