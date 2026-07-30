@@ -44,3 +44,7 @@
   border-radius: 0.4rem;
   border: none;
 }
+
+.searchbar input:focus {
+  outline: none;
+}
