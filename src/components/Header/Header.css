@@ -1,3 +1,4 @@
+/* header style */
 .header {
   padding: 2.5rem;
   padding-right: 0;
@@ -6,6 +7,7 @@
   justify-content: space-between;
 }
 
+/* header brand style */
 .header .brand {
   display: flex;
   gap: 2rem;
@@ -13,6 +15,7 @@
   flex: 1;
 }
 
+/* header tagline style */
 .header .tagline {
   background-color: var(--secondary-color);
   padding: 1rem;
@@ -24,27 +27,56 @@
   font-weight: 500;
 }
 
+/* searchbar style */
 .searchbar {
   display: flex;
   gap: 0.5rem;
   flex: 1;
 }
 
-.searchbar input {
-  padding: 0.5rem;
+/* searchbar input style */
+.searchbar .search-input {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--text-black);
   border-radius: 0.4rem;
+  padding: 0.5rem;
   width: 24rem;
-  border-color: var(--text-black);
+  gap: 0.5rem;
 }
 
+.searchbar .search-input input {
+  border: none;
+  width: 100%;
+}
+
+.searchbar .search-input input:focus {
+  outline: none;
+}
+
+.searchbar .search-input .search-icon {
+  color: var(--text-gray);
+}
+
+.searchbar .search-input:focus-within .search-icon {
+  color: var(--text-black);
+}
+
+/* searchbar button style */
 .searchbar button {
   background-color: var(--text-black);
   color: var(--primary-color);
   padding: 0.5rem 2rem;
   border-radius: 0.4rem;
   border: none;
+  transition:
+    background-color 0.3s ease-in-out,
+    padding 0.3s ease-in-out,
+    font-weight 0.3s ease-in-out;
 }
 
-.searchbar input:focus {
-  outline: none;
+.searchbar button:hover {
+  background-color: var(--text-gray);
+  padding: 0.5rem 2.5rem;
+  font-weight: 700;
 }

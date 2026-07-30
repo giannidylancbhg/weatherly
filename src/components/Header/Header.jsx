@@ -1,5 +1,7 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   return (
@@ -8,7 +10,15 @@ export default function Header() {
         <img src={logo} alt="Weatherly Logo" />
 
         <form className="searchbar">
-          <input type="text" placeholder="Type a location" />
+          <label className="search-input">
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
+            <input
+              type="text"
+              placeholder="Type a location"
+              id="search-input"
+            />
+          </label>
+
           <button>Search</button>
         </form>
       </div>
