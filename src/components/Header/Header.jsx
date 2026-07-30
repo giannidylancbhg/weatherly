@@ -15,7 +15,7 @@ export default function Header() {
           <label className="search-input">
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
-              className={`search-icon${location.trim() ? "has-text" : ""}`}
+              className={`search-icon${location.trim() ? "search-has-text" : ""}`}
             />
             <input
               type="text"
