@@ -1,10 +1,13 @@
+import CurrentWeather from "./CurrentWeather/CurrentWeather";
 import "./Weather.css";
 
 export default function Weather() {
   return (
     <main className="weather-container">
-      <section className="current-weather"></section>
-      <section className="forecast"></section>
+      <CurrentWeather />
+      <section className="forecast" style={{ flex: 1.2 }}>
+        Forecast
+      </section>
     </main>
   );
 }
