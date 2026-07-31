@@ -1,12 +1,14 @@
 import "./assets/styles/global.css";
 import "./assets/styles/variable.css";
 import Header from "./components/Header/Header";
+import Weather from "./components/Weather/Weather";
 
 function App() {
   return (
-    <main>
+    <div className="app">
       <Header />
-    </main>
+      <Weather />
+    </div>
   );
 }
 
