@@ -1,0 +1,30 @@
+.current-weather-highlights {
+  display: flex;
+  gap: 2.5rem;
+  color: var(--text-gray);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.highlight-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-weight: 600;
+}
+
+@media (max-width: 1045px) {
+  .current-weather-highlights {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
