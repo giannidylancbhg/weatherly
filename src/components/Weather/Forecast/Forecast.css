@@ -1,12 +1,24 @@
 .forecast-container {
-  /* display: flex;
-  gap: 10px;
-  flex-wrap: wrap; */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   padding: 2rem;
   flex: 1;
   height: fit-content;
+}
 
+.forecast-heading {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  align-self: flex-end;
+  color: var(--text-gray);
+  font-size: 1.1rem;
+}
+
+.forecast-list {
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
