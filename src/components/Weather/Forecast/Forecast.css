@@ -1,0 +1,64 @@
+.forecast-container {
+  /* display: flex;
+  gap: 10px;
+  flex-wrap: wrap; */
+
+  padding: 2rem;
+  flex: 1;
+  height: fit-content;
+
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto auto auto;
+}
+
+.forecast-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  background-color: var(--secondary-color);
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: var(--text-gray);
+
+  flex: 1 0 200px;
+}
+
+.forecast-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-temperature {
+  font-size: 2rem;
+  font-weight: 600;
+  font-weight: 700;
+}
+
+.forecast-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.forecast-icon {
+  width: 3rem;
+}
+
+.forecast-condition {
+  font-weight: 600;
+}
+
+@media (max-width: 1400px) {
+  .forecast-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .forecast-container {
+    grid-template-columns: auto;
+  }
+}
