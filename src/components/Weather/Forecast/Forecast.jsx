@@ -1,5 +1,7 @@
 import "./Forecast.css";
 import exampleWeatherIcon from "../../../assets/icons/example-weather-icon.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export default function Forecast() {
   const forecasts = [
@@ -34,23 +36,33 @@ export default function Forecast() {
       icon: exampleWeatherIcon,
     },
   ];
+
   return (
     <section className="forecast-container">
-      {forecasts.map((forecast) => (
-        <article className="forecast-card" key={forecast.time}>
-          <div className="forecast-info">
-            <time dateTime="" className="forecast-time">
-              {forecast.time}
-            </time>
-            <p className="forecast-temperature">{forecast.temperature}&deg;c</p>
-          </div>
+      <h3 className="forecast-heading">
+        <FontAwesomeIcon icon={faClock} />
+        <span>3-hour forecast</span>
+      </h3>
 
-          <div className="forecast-description">
-            <img src={forecast.icon} alt="" className="forecast-icon" />
-            <p className="forecast-condition">{forecast.condition}</p>
-          </div>
-        </article>
-      ))}
+      <div className="forecast-list">
+        {forecasts.map((forecast) => (
+          <article className="forecast-card" key={forecast.time}>
+            <div className="forecast-info">
+              <time dateTime="" className="forecast-time">
+                {forecast.time}
+              </time>
+              <p className="forecast-temperature">
+                {forecast.temperature}&deg;c
+              </p>
+            </div>
+
+            <div className="forecast-description">
+              <img src={forecast.icon} alt="" className="forecast-icon" />
+              <p className="forecast-condition">{forecast.condition}</p>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
