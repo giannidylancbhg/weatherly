@@ -11,11 +11,11 @@
 .current-weather .icon {
   display: block;
   margin: 0 auto;
-  width: 10rem;
+  width: 9rem;
 }
 
 .temperature {
-  font-size: 8.5rem;
+  font-size: 8rem;
   font-weight: 700;
   text-align: center;
 }
@@ -30,7 +30,11 @@
   font-weight: 500;
 }
 
+.weather-description {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 .weather-description span {
   font-weight: 700;
-  font-size: 1rem;
 }

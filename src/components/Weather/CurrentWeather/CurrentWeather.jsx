@@ -2,6 +2,7 @@ import "./CurrentWeather.css";
 import weatherIconExample from "../../../assets/icons/example-weather-icon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import WeatherHighlights from "./WeatherHighlights/WeatherHighlights";
 
 export default function CurrentWeather() {
   return (
@@ -10,7 +11,7 @@ export default function CurrentWeather() {
         <img src={weatherIconExample} alt="" className="icon" />
         <h1 className="temperature">27&deg;c</h1>
         <p className="location">
-          <FontAwesomeIcon icon={faLocationDot} />
+          <FontAwesomeIcon icon={faLocationDot} size="sm" />
           <span className="location-name">Liloan, Cebu</span>
           <span className="separator"> | </span>
           <span className="location-time">9:45 PM</span>
@@ -21,7 +22,7 @@ export default function CurrentWeather() {
         <span>Moderate rain</span> is expected today.
       </p>
 
-      <div className="current-weather-highlights"></div>
+      <WeatherHighlights />
     </section>
   );
 }
