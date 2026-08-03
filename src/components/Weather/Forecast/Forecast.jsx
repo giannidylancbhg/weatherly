@@ -37,7 +37,7 @@ export default function Forecast() {
   return (
     <section className="forecast-container">
       {forecasts.map((forecast) => (
-        <article className="forecast-card">
+        <article className="forecast-card" key={forecast.time}>
           <div className="forecast-info">
             <time dateTime="" className="forecast-time">
               {forecast.time}
