@@ -3,15 +3,24 @@ import logo from "../../assets/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useWeather } from "../../context/WeatherContext";
 
 export default function Header() {
   const [location, setLocation] = useState("");
+  const { search } = useWeather();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search(location);
+    setLocation("");
+  };
+
   return (
     <header className="header">
       <div className="brand">
         <img src={logo} alt="Weatherly Logo" />
 
-        <form className="searchbar">
+        <form className="searchbar" onSubmit={handleSubmit}>
           <label className="search-input">
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
