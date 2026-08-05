@@ -6,7 +6,7 @@ export const getCurrentWeather = async (city) => {
   const response = await fetch(url);
   const data = await response.json();
 
-  console.log(response);
+  console.log(data);
 
   if (!response.ok) {
     throw new Error("City is not found.");
