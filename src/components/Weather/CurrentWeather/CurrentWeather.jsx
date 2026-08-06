@@ -11,9 +11,9 @@ export default function CurrentWeather() {
 
   return (
     <section className="current-weather">
-      {loading ? (
+      {!loading ? (
         <div className="loading">
-          <LoadingSpinner size="25px" />
+          <LoadingSpinner size="100px" />
           <p className="text">Getting latest weather...</p>
         </div>
       ) : (
