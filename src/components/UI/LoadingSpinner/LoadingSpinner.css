@@ -1,0 +1,18 @@
+.loading-spinner {
+  --loading-spinner-size: 10px;
+  height: var(--loading-spinner-size);
+  width: var(--loading-spinner-size);
+  border: calc(var(--loading-spinner-size) / 10) var(--secondary-color) solid;
+  border-radius: 50%;
+  border-top-color: var(--text-black);
+  animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}

@@ -12,11 +12,13 @@ export const getCurrentWeather = async (city) => {
     throw new Error("City is not found.");
   }
 
+  const iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
   return {
     name: data.name,
     temperature: Math.floor(data.main.temp),
     description: {
-      icon: data.weather[0].icon,
+      icon: iconURL,
       text: data.weather[0].description,
     },
     highlights: {
