@@ -1,3 +1,3 @@
 export const formatWithCommas = (number) => {
-  return number.toLocaleString("en-PH");
+  return number?.toLocaleString("en-PH");
 };
