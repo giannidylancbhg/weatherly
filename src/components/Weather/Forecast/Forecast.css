@@ -64,13 +64,13 @@
 }
 
 @media (max-width: 1400px) {
-  .forecast-container {
+  .forecast-list {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .forecast-container {
+  .forecast-list {
     grid-template-columns: 1fr;
   }
 }
