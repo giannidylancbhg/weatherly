@@ -38,13 +38,38 @@
   flex: 1 0 200px;
 }
 
+.forecast-title {
+  flex: 1 0 200px;
+  background-color: var(--text-black);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-weight: 800;
+  font-size: 1.3rem;
+  cursor: context-menu;
+
+  grid-column: 1 / span 2;
+}
+
+.forecast-end {
+  flex: 1 0 200px;
+  background-color: var(--text-black);
+  border-radius: 1rem;
+}
+
 .forecast-info {
   display: flex;
   flex-direction: column;
+  cursor: context-menu;
+  flex: 1;
+  height: 100%;
 }
 
 .forecast-temperature {
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 600;
   font-weight: 700;
 }
@@ -53,10 +78,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: context-menu;
+  text-transform: capitalize;
 }
 
 .forecast-icon {
-  width: 3rem;
+  width: 4rem;
 }
 
 .forecast-condition {
@@ -66,6 +93,10 @@
 @media (max-width: 1400px) {
   .forecast-list {
     grid-template-columns: 1fr 1fr;
+  }
+  .forecast-title {
+    grid-column: 1 / -1;
+    border-radius: 0.6rem;
   }
 }
 
