@@ -10,20 +10,7 @@ import { useWeather } from "../../../context/WeatherContext";
 export default function Forecast() {
   const { forecastData } = useWeather();
 
-  const today = new Date().toLocaleDateString("en-CA");
-  const todaysForecast = forecastData?.lists
-    ?.filter((item) => {
-      return item.time.startsWith(today);
-    })
-    .map((item) => {
-      const [hours, minutes] = item.time.split(" ")[1].split(":");
-      const hour = Number(hours);
-      return {
-        ...item,
-        time: `${hour % 12 || 12}:${minutes} ${hour >= 12 ? "PM" : "AM"}`,
-      };
-    });
-  const countTodaysForecast = todaysForecast?.length ?? 0;
+  const countTodaysForecast = forecastData?.todaysForecast?.length ?? 0;
 
   console.log(forecastData);
 
@@ -40,7 +27,7 @@ export default function Forecast() {
             <h4>Today's Weather</h4>
           </div>
 
-          {todaysForecast?.map((item) => (
+          {forecastData?.todaysForecast?.map((item) => (
             <article className="forecast-card" key={item?.timestamp}>
               <div className="forecast-info">
                 <time dateTime="" className="forecast-time">
@@ -51,8 +38,8 @@ export default function Forecast() {
                 </p>
               </div>
               <div className="forecast-description">
-                <img src={item.icon} alt="" className="forecast-icon" />
-                <p className="forecast-condition">{item.description}</p>
+                <img src={item?.icon} alt="" className="forecast-icon" />
+                <p className="forecast-condition">{item?.description}</p>
               </div>
             </article>
           ))}
