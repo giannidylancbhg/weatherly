@@ -40,16 +40,21 @@ export const getForecast = async (city) => {
   const lists = data.list.map((item) => ({
     timestamp: item.dt,
     time: item.dt_txt,
+    dateTime: item.dt_txt,
     temperature: Math.floor(item.main.temp),
     description: item.weather[0].description,
     icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
   }));
 
-  const currentCityDate =
-    data?.city?.timezone &&
-    new Date(Date.now() + data?.city?.timezone * 1000)
-      .toISOString()
-      .split("T")[0];
+  const currentCityDate = new Date(Date.now() + data?.city?.timezone * 1000)
+    .toISOString()
+    .split("T")[0];
+
+  const currentCityDay = new Date(
+    Date.now() + data?.city?.timezone * 1000,
+  ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+
+  console.log(currentCityDay);
 
   const todaysForecast = lists
     .filter((item) => item.time.startsWith(currentCityDate))
@@ -68,7 +73,7 @@ export const getForecast = async (city) => {
   return {
     city: data.city.name,
     timezone: data.city.timezone,
-    lists,
+    currentCityDay,
     todaysForecast,
   };
 };
