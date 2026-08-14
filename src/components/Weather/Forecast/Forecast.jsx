@@ -44,15 +44,20 @@ export default function Forecast() {
             </article>
           ))}
 
-          {(countTodaysForecast == 3 || countTodaysForecast == 6) && (
-            <div className="forecast-end"></div>
+          {countTodaysForecast == 3 && (
+            <div className="forecast-end end-v3"></div>
           )}
 
-          {(countTodaysForecast == 5 || countTodaysForecast == 8) && (
-            <div
-              className="forecast-end"
-              style={{ gridColumn: "2 / span 2" }}
-            ></div>
+          {countTodaysForecast == 6 && (
+            <div className="forecast-end end-v6"></div>
+          )}
+
+          {countTodaysForecast == 5 && (
+            <div className="forecast-end end-v5"></div>
+          )}
+
+          {countTodaysForecast == 8 && (
+            <div className="forecast-end end-v8"></div>
           )}
         </div>
       </section>
