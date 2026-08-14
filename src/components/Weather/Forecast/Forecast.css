@@ -39,19 +39,27 @@
 }
 
 .forecast-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
   flex: 1 0 200px;
   background-color: var(--text-black);
   border-radius: 1rem;
   padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--primary-color);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 1.3rem;
   cursor: context-menu;
 
   grid-column: 1 / span 2;
+}
+
+.forecast-title p {
+  font-size: 2.2rem;
+  font-weight: 800;
 }
 
 .forecast-end {
