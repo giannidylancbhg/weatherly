@@ -6,22 +6,12 @@ import WeatherHighlights from "./WeatherHighlights/WeatherHighlights";
 import { useWeather } from "../../../context/WeatherContext";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import { useEffect, useState } from "react";
+import useScrollPosition from "../../../hooks/useScrollPosition";
 
 export default function CurrentWeather() {
   const { weatherData, loading } = useWeather();
-  const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleScroll = () => {
-    setScrollPosition(scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const scrollPosition = useScrollPosition();
 
   return (
     <section
