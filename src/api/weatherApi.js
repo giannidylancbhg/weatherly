@@ -30,7 +30,7 @@ export const getForecast = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
 
   const response = await fetch(url);
-  if (!response.ok) throw new Error("City forecast is not found.");
+  if (!response.ok) throw new Error("Unable to fetch weather forecast.");
 
   const data = await response.json();
 
