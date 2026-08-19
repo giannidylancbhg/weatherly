@@ -4,13 +4,17 @@ import { getCurrentWeather, getForecast } from "../api/weatherApi";
 const WeatherContext = createContext(undefined);
 
 export const WeatherProvider = ({ children }) => {
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [errorCurrentWeather, setErrorCurrentWeather] = useState("");
-  const [errorForecast, setErrorForecast] = useState();
+  const [errorCurrentWeather, setErrorCurrentWeather] = useState(null);
+  const [errorForecast, setErrorForecast] = useState(null);
 
   const search = async (city) => {
+    setWeatherData(null);
+    setForecastData(null);
+    setErrorCurrentWeather(null);
+    setErrorForecast(null);
     setLoading(true);
 
     // Get Current Weather Data
