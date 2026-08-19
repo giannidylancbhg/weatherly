@@ -27,10 +27,10 @@ export default function CurrentWeather() {
           <div className="current-weather-info">
             <img src={weatherData?.description?.icon} alt="" className="icon" />
 
-            <h1 className="temperature">{weatherData.temperature}&deg;c</h1>
+            <h1 className="temperature">{weatherData?.temperature}&deg;c</h1>
             <p className="location">
               <FontAwesomeIcon icon={faLocationDot} size="sm" />
-              <span className="location-name">{weatherData.name}</span>
+              <span className="location-name">{weatherData?.name}</span>
               <span className="separator"> | </span>
               <span className="location-time">9:45 PM</span>
             </p>

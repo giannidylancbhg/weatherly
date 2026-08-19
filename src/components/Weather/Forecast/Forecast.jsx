@@ -29,7 +29,7 @@ export default function Forecast() {
           <div className="forecast-list">
             <div className="forecast-title">
               <h4>Today's Forecast</h4>
-              <p>{forecastData.currentCityDay}</p>
+              <p>{forecastData?.currentCityDay}</p>
             </div>
 
             {forecastData?.todaysForecast?.map((item) => (
