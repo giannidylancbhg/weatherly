@@ -6,10 +6,9 @@ export const getCurrentWeather = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
 
   const response = await fetch(url);
+  if (!response.ok) throw new Error("Unable to fetch current weather.");
+
   const data = await response.json();
-
-  if (!response.ok) throw new Error("City weather is not found.");
-
   const iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
   return {
