@@ -35,8 +35,6 @@ export const getForecast = async (city) => {
 
   if (!response.ok) throw new Error("City forecast is not found.");
 
-  // console.log(data);
-
   const lists = data.list.map((item) => ({
     timestamp: item.dt,
     time: item.dt_txt,
@@ -53,8 +51,6 @@ export const getForecast = async (city) => {
   const currentCityDay = new Date(
     Date.now() + data?.city?.timezone * 1000,
   ).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
-
-  console.log(currentCityDay);
 
   const todaysForecast = lists
     .filter((item) => item.time.startsWith(currentCityDate))
