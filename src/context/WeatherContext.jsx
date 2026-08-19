@@ -7,19 +7,29 @@ export const WeatherProvider = ({ children }) => {
   const [weatherData, setWeatherData] = useState({});
   const [forecastData, setForecastData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [errorCurrentWeather, setErrorCurrentWeather] = useState("");
+  const [errorForecast, setErrorForecast] = useState();
 
   const search = async (city) => {
+    setLoading(true);
+
+    // Get Current Weather Data
     try {
-      setLoading(true);
       const weatherData = await getCurrentWeather(city);
       setWeatherData(weatherData);
+    } catch (error) {
+      setErrorCurrentWeather(error.message);
+    }
+
+    // Get Forecast Data
+    try {
       const forecastData = await getForecast(city);
       setForecastData(forecastData);
-    } catch (err) {
-      console.log(err.message);
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      setErrorForecast(error.message);
     }
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -28,7 +38,14 @@ export const WeatherProvider = ({ children }) => {
 
   return (
     <WeatherContext.Provider
-      value={{ search, weatherData, forecastData, loading }}
+      value={{
+        search,
+        weatherData,
+        forecastData,
+        loading,
+        errorCurrentWeather,
+        errorForecast,
+      }}
     >
       {children}
     </WeatherContext.Provider>
