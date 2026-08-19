@@ -5,12 +5,28 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import WeatherHighlights from "./WeatherHighlights/WeatherHighlights";
 import { useWeather } from "../../../context/WeatherContext";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
+import { useEffect, useState } from "react";
 
 export default function CurrentWeather() {
   const { weatherData, loading } = useWeather();
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    setScrollPosition(scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <section className="current-weather">
+    <section
+      className={`current-weather ${scrollPosition > 100 ? "current-weather-sticky" : ""}`}
+    >
       {loading ? (
         <div className="loading">
           <LoadingSpinner size="100px" />

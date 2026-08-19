@@ -6,21 +6,24 @@
 
   flex: 1;
   padding: 2rem;
+  height: fit-content;
 }
 
 .current-weather .icon {
   display: block;
   margin: 0 auto;
   width: 10rem;
-  /* border-radius: 100%; */
+}
+
+.current-weather-sticky {
+  position: sticky;
+  top: 30px;
 }
 
 .temperature {
   font-size: 8rem;
   font-weight: 700;
   text-align: center;
-  /* background-color: red; */
-  /* height: 180px; */
 }
 
 .location {
@@ -51,9 +54,6 @@
   gap: 20px;
   flex-wrap: wrap;
 
-  /* background-color: var(--secondary-color); */
-  /* width: 100%;
-  flex: 1; */
   padding: 10rem 1rem;
   border-radius: 1.5rem;
 }
@@ -107,5 +107,11 @@
 
   100% {
     translate: 0 10px;
+  }
+}
+
+@media (max-width: 1109px) {
+  .current-weather-sticky {
+    position: static;
   }
 }
