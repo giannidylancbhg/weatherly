@@ -13,6 +13,37 @@ export default function CurrentWeather() {
 
   const scrollPosition = useScrollPosition();
 
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error, {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  function success(position) {
+    console.log(
+      "Latitude:",
+      position.coords.latitude,
+      "Longitude:",
+      position.coords.longitude,
+      "Accuracy",
+      position.coords.accuracy,
+    );
+  }
+
+  function error() {
+    alert("Sorry, no position available.");
+  }
+
+  // useEffect(() => {
+  //   getLocation();
+  // }, []);
+
   return (
     <section
       className={`current-weather ${scrollPosition > 100 ? "current-weather-sticky" : ""}`}
