@@ -73,6 +73,7 @@
   grid-column: span 1;
 }
 
+.end-v2,
 .end-v5,
 .end-v8 {
   grid-column: span 2;
@@ -116,6 +117,10 @@
   .forecast-title {
     grid-column: 1 / span 2;
     border-radius: 0.6rem;
+  }
+
+  .end-v2 {
+    display: none;
   }
 
   .end-v5 {

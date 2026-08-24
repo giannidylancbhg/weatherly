@@ -46,6 +46,9 @@ export default function Forecast() {
               </article>
             ))}
 
+            {countTodaysForecast == 2 && (
+              <div className="forecast-end end-v2">sss</div>
+            )}
             {countTodaysForecast == 3 && (
               <div className="forecast-end end-v3"></div>
             )}
