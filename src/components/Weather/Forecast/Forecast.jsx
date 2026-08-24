@@ -10,10 +10,7 @@ import LoadingSkeleton from "../../UI/LoadingSkeleton/LoadingSkeleton";
 
 export default function Forecast() {
   const { forecastData, loading } = useWeather();
-
   const countTodaysForecast = forecastData?.todaysForecast?.length ?? 0;
-
-  console.log(forecastData);
 
   return (
     <WeatherProvider>
