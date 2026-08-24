@@ -1,8 +1,8 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faL, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useRef, useState } from "react";
 import { useWeather } from "../../context/WeatherContext";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import useAutocompleteSearch from "../../hooks/useAutocompleteSearch.jsx";
@@ -10,6 +10,7 @@ import useAutocompleteSearch from "../../hooks/useAutocompleteSearch.jsx";
 export default function Header() {
   const [location, setLocation] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [focus, setFocus] = useState(false);
   const { search } = useWeather();
 
   const { cityList, coordinates, loading, error, setCoordinates } =
@@ -38,6 +39,35 @@ export default function Header() {
     handleSearch(coordinates);
   };
 
+  const inputRef = useRef(null);
+  const handleKeyDown = (e) => {
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev < cityList.length - 1 ? prev + 1 : 0));
+        break;
+
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : cityList.length - 1));
+        break;
+
+      case "Enter":
+        e.preventDefault();
+        handleCityClick(selectedIndex);
+        break;
+
+      case "Escape":
+        e.preventDefault();
+        setFocus(false);
+        setSelectedIndex(0);
+        inputRef.current.blur();
+        break;
+    }
+  };
+
+  console.log(cityList.length);
+
   return (
     <header className="header">
       <div className="brand">
@@ -58,10 +88,16 @@ export default function Header() {
                 onChange={(e) => setLocation(e.target.value)}
                 list="city-names"
                 autoComplete="off"
+                onFocus={() => setFocus(true)}
+                onBlur={() => setFocus(false)}
+                onKeyDown={handleKeyDown}
+                ref={inputRef}
               />
             </label>
 
-            <button disabled={!location.trim() || cityList === null}>
+            <button
+              disabled={!location.trim() || cityList.length === undefined}
+            >
               Search
             </button>
           </form>
@@ -72,21 +108,23 @@ export default function Header() {
                 <LoadingSpinner />
               </div>
             ) : cityList?.length > 0 ? (
-              <ul className="city-list">
-                {cityList?.map((item, index) => (
-                  <li key={`${item.lat}-${item.lon}`}>
-                    <button
-                      onClick={() => handleCityClick(index)}
-                      className={`${index === selectedIndex ? "city-selected " : ""}`}
-                    >
-                      {item?.name}
-                      {item?.state ? "," : ""} {item?.state}
-                    </button>
-                  </li>
-                ))}
-              </ul>
+              focus && (
+                <ul className="city-list">
+                  {cityList?.map((item, index) => (
+                    <li key={`${item.lat}-${item.lon}`}>
+                      <button
+                        onMouseDown={() => handleCityClick(index)}
+                        className={`${index === selectedIndex ? "city-selected " : ""}`}
+                      >
+                        {item?.name}
+                        {item?.state ? "," : ""} {item?.state}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )
             ) : (
-              <div className="city-unavailable">{error}</div>
+              focus && <div className="city-unavailable">{error}</div>
             ))}
         </div>
       </div>
