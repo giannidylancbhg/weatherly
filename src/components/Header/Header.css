@@ -24,6 +24,81 @@
   font-weight: 500;
 }
 
+.search-container {
+  width: fit-content;
+  position: relative;
+}
+
+.city-list {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+
+  background-color: var(--primary-color);
+  border: 2px solid var(--text-black);
+  z-index: 9999;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  list-style: none;
+}
+
+.city-list li button {
+  background-color: inherit;
+  padding: 0;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+}
+
+.city-list li button:hover {
+  background-color: var(--secondary-color);
+}
+
+.city-list .city-selected {
+  background-color: var(--secondary-color);
+}
+
+.city-list-loading {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+
+  background-color: var(--primary-color);
+  border: 2px solid var(--text-black);
+  padding: 1rem;
+  z-index: 9999;
+  border-radius: 0.5rem;
+  height: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.city-unavailable {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+
+  background-color: var(--primary-color);
+  border: 2px solid var(--text-black);
+  padding: 1rem;
+  z-index: 9999;
+  border-radius: 0.5rem;
+  height: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .searchbar {
   display: flex;
   gap: 0.5rem;
@@ -161,6 +236,10 @@
     background-color: var(--text-gray);
     padding: 1rem 1rem;
     font-weight: 700;
+  }
+
+  .search-container {
+    width: 100%;
   }
 }
 
