@@ -10,7 +10,7 @@ export const WeatherProvider = ({ children }) => {
   const [errorCurrentWeather, setErrorCurrentWeather] = useState(null);
   const [errorForecast, setErrorForecast] = useState(null);
 
-  const search = async (city) => {
+  const search = async (coordinates) => {
     setWeatherData(null);
     setForecastData(null);
     setErrorCurrentWeather(null);
@@ -19,7 +19,7 @@ export const WeatherProvider = ({ children }) => {
 
     // Get Current Weather Data
     try {
-      const weatherData = await getCurrentWeather(city);
+      const weatherData = await getCurrentWeather(coordinates);
       setWeatherData(weatherData);
     } catch (error) {
       setErrorCurrentWeather(error.message);
@@ -27,7 +27,7 @@ export const WeatherProvider = ({ children }) => {
 
     // Get Forecast Data
     try {
-      const forecastData = await getForecast(city);
+      const forecastData = await getForecast(coordinates);
       setForecastData(forecastData);
     } catch (error) {
       setErrorForecast(error.message);
@@ -37,7 +37,7 @@ export const WeatherProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    search("Liloan");
+    search({ lat: 10.3998487, lon: 123.998762 });
   }, []);
 
   return (

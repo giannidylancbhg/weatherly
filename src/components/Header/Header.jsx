@@ -8,28 +8,42 @@ import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 
 export default function Header() {
   const [location, setLocation] = useState("");
-  const [coordinates, setCoordinates] = useState({});
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const { search } = useWeather();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (location.trim() !== "") {
-      search(location);
-    } else {
-      search("Liloan");
-    }
-
-    setLocation("");
-  };
-
-  const [city, setCity] = useState(null);
-  const handleChange = async (e) => {
-    setLocation(e.target.value);
-  };
+  const [cityList, setCityList] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [coordinates, setCoordinates] = useState({});
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const handleSearch = (coordinates) => {
+    search(coordinates);
+    setLocation("");
+    setSelectedIndex(0);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (location.trim() !== "") handleSearch(coordinates);
+    else handleSearch({ lat: 10.3998487, lon: 123.998762 });
+  };
+
+  const handleCityClick = (index) => {
+    const coordinates = {
+      lat: cityList[index]?.lat,
+      lon: cityList[index]?.lon,
+    };
+
+    setCoordinates({ lat: cityList[index]?.lat, lon: cityList[index]?.lon });
+    handleSearch(coordinates);
+  };
+
+  const handleChange = (e) => {
+    setLocation(e.target.value);
+  };
+
   useEffect(() => {
     setLoading(true);
 
@@ -38,7 +52,8 @@ export default function Header() {
         const API_KEY = import.meta.env.VITE_API_KEY;
 
         if (location.trim() === "") {
-          setCity(null);
+          setCityList(null);
+          setSelectedIndex(0);
           return;
         }
 
@@ -48,8 +63,11 @@ export default function Header() {
 
         if (data.length === 0) throw new Error("No results found");
 
-        setCity(data);
-        console.log(data);
+        setCityList(data);
+        setCoordinates({
+          lat: data[0]?.lat,
+          lon: data[0]?.lon,
+        });
       } catch (error) {
         setError(error.message);
       } finally {
@@ -59,6 +77,8 @@ export default function Header() {
 
     return () => clearTimeout(timer);
   }, [location]);
+
+  console.log(cityList);
 
   return (
     <header className="header">
@@ -81,14 +101,11 @@ export default function Header() {
                 list="city-names"
                 autoComplete="off"
               />
-
-              {/* <datalist id="city-names" className="city-list">
-              <option value="Liloan"></option>
-              <option value="Consolacion"></option>
-            </datalist> */}
             </label>
 
-            <button>Search</button>
+            <button disabled={!location.trim() || cityList === null}>
+              Search
+            </button>
           </form>
 
           {location &&
@@ -96,17 +113,16 @@ export default function Header() {
               <div className="city-list-loading">
                 <LoadingSpinner />
               </div>
-            ) : city?.length > 0 ? (
+            ) : cityList?.length > 0 ? (
               <ul className="city-list">
-                {city?.map((item, index) => (
+                {cityList?.map((item, index) => (
                   <li key={`${item.lat}-${item.lon}`}>
                     <button
-                      onClick={() => {
-                        setSelectedIndex(index);
-                      }}
+                      onClick={() => handleCityClick(index)}
                       className={`${index === selectedIndex ? "city-selected " : ""}`}
                     >
-                      {item?.name}, {item?.state}
+                      {item?.name}
+                      {item?.state ? "," : ""} {item?.state}
                     </button>
                   </li>
                 ))}
