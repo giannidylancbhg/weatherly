@@ -2,20 +2,18 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useWeather } from "../../context/WeatherContext";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
+import useAutocompleteSearch from "../../hooks/useAutocompleteSearch.jsx";
 
 export default function Header() {
   const [location, setLocation] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const { search } = useWeather();
 
-  const [cityList, setCityList] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [coordinates, setCoordinates] = useState({});
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { cityList, coordinates, loading, error, setCoordinates } =
+    useAutocompleteSearch(location);
 
   const handleSearch = (coordinates) => {
     search(coordinates);
@@ -40,46 +38,6 @@ export default function Header() {
     handleSearch(coordinates);
   };
 
-  const handleChange = (e) => {
-    setLocation(e.target.value);
-  };
-
-  useEffect(() => {
-    setLoading(true);
-
-    const timer = setTimeout(async () => {
-      try {
-        const API_KEY = import.meta.env.VITE_API_KEY;
-
-        if (location.trim() === "") {
-          setCityList(null);
-          setSelectedIndex(0);
-          return;
-        }
-
-        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${API_KEY}`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.length === 0) throw new Error("No results found");
-
-        setCityList(data);
-        setCoordinates({
-          lat: data[0]?.lat,
-          lon: data[0]?.lon,
-        });
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [location]);
-
-  console.log(cityList);
-
   return (
     <header className="header">
       <div className="brand">
@@ -97,7 +55,7 @@ export default function Header() {
                 placeholder="Type a location"
                 id="search-input"
                 value={location}
-                onChange={handleChange}
+                onChange={(e) => setLocation(e.target.value)}
                 list="city-names"
                 autoComplete="off"
               />
