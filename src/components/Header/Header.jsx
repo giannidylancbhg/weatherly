@@ -66,8 +66,6 @@ export default function Header() {
     }
   };
 
-  console.log(cityList.length);
-
   return (
     <header className="header">
       <div className="brand">
