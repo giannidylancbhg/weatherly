@@ -1,48 +1,14 @@
 import "./CurrentWeather.css";
-import weatherIconExample from "../../../assets/icons/example-weather-icon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import WeatherHighlights from "./WeatherHighlights/WeatherHighlights";
 import { useWeather } from "../../../context/WeatherContext";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
-import { useEffect, useState } from "react";
 import useScrollPosition from "../../../hooks/useScrollPosition";
 
 export default function CurrentWeather() {
   const { weatherData, loading } = useWeather();
-
   const scrollPosition = useScrollPosition();
-
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error, {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  };
-
-  function success(position) {
-    console.log(
-      "Latitude:",
-      position.coords.latitude,
-      "Longitude:",
-      position.coords.longitude,
-      "Accuracy",
-      position.coords.accuracy,
-    );
-  }
-
-  function error() {
-    alert("Sorry, no position available.");
-  }
-
-  // useEffect(() => {
-  //   getLocation();
-  // }, []);
 
   return (
     <section
