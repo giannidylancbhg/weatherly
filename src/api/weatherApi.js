@@ -11,9 +11,20 @@ export const getCurrentWeather = async (coordinates) => {
   const data = await response.json();
   const iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
+  const time = new Date(Date.now() + data?.timezone * 1000).toLocaleTimeString(
+    [],
+    {
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: "UTC",
+    },
+  );
+
   return {
     name: data.name,
     temperature: Math.floor(data.main.temp),
+    time: time,
+    timezone: data.timezone,
     description: {
       icon: iconURL,
       text: data.weather[0].description,

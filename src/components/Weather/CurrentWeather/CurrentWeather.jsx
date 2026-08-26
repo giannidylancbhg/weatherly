@@ -5,10 +5,23 @@ import WeatherHighlights from "./WeatherHighlights/WeatherHighlights";
 import { useWeather } from "../../../context/WeatherContext";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import useScrollPosition from "../../../hooks/useScrollPosition";
+import { formatCityTime } from "../../../utils/dateFormat";
+import { useEffect, useState } from "react";
 
 export default function CurrentWeather() {
   const { weatherData, loading } = useWeather();
   const scrollPosition = useScrollPosition();
+  const [timestamp, setTimestamp] = useState(Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimestamp(Date.now());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const time = formatCityTime(timestamp, weatherData?.timezone);
 
   return (
     <section
@@ -29,7 +42,7 @@ export default function CurrentWeather() {
               <FontAwesomeIcon icon={faLocationDot} size="sm" />
               <span className="location-name">{weatherData?.name}</span>
               <span className="separator"> | </span>
-              <span className="location-time">9:45 PM</span>
+              <span className="location-time">{time}</span>
             </p>
           </div>
           <p className="weather-description">
