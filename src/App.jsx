@@ -1,5 +1,6 @@
 import "./assets/styles/global.css";
 import "./assets/styles/variable.css";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton/ScrollToTopButton";
 import Weather from "./components/Weather/Weather";
@@ -15,6 +16,7 @@ function App() {
         <Header />
         <Weather />
       </WeatherProvider>
+      <Footer />
 
       {scrollPosition > 100 ? <ScrollToTopButton /> : <></>}
     </div>
