@@ -54,6 +54,7 @@ export default function Header() {
 
       case "Enter":
         e.preventDefault();
+        if (loading) return;
         handleCityClick(selectedIndex);
         break;
 
