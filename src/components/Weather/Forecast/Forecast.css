@@ -27,7 +27,7 @@
 .forecast-card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 
   background-color: var(--secondary-color);
   height: fit-content;

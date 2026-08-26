@@ -1,11 +1,47 @@
 .footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
-  padding: 2rem;
+  padding: 3rem 2.5rem;
+  font-weight: 600;
 }
 
 .footer span {
   font-weight: 800;
+}
+
+.footer .text {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .social-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer .social-links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2;
+  font-size: 1rem;
+  color: var(--text-black);
+  text-decoration: none;
+  font-weight: 800;
+}
+.footer .social-links a .icon {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 710px) {
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
