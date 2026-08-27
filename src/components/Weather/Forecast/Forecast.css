@@ -36,6 +36,19 @@
   color: var(--text-gray);
 
   flex: 1 0 200px;
+  animation: fadeInUp 0.5s ease-in both;
+  animation-delay: var(--delay);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .forecast-title {
@@ -55,6 +68,17 @@
   cursor: context-menu;
 
   grid-column: 1 / span 2;
+
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .forecast-title p {
