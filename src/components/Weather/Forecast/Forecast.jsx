@@ -51,7 +51,7 @@ export default function Forecast() {
             ))}
 
             {countTodaysForecast == 2 && (
-              <div className="forecast-end end-v2">sss</div>
+              <div className="forecast-end end-v2"></div>
             )}
             {countTodaysForecast == 3 && (
               <div className="forecast-end end-v3"></div>
