@@ -29,8 +29,12 @@ export default function Forecast() {
               <p>{forecastData?.currentCityDay}</p>
             </div>
 
-            {forecastData?.todaysForecast?.map((item) => (
-              <article className="forecast-card" key={item?.timestamp}>
+            {forecastData?.todaysForecast?.map((item, index) => (
+              <article
+                className="forecast-card"
+                key={item?.timestamp}
+                style={{ "--delay": `${index * 0.15}s` }}
+              >
                 <div className="forecast-info">
                   <time dateTime="" className="forecast-time">
                     {item?.time}
