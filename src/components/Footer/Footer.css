@@ -17,6 +17,10 @@
   justify-content: center;
 }
 
+.footer .text p {
+  text-align: center;
+}
+
 .footer .social-links {
   flex: 1;
   display: flex;
