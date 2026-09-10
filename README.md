@@ -2,7 +2,7 @@
 
 Weatherly is a weather application built with React that provides current weather conditions and forecasts based on a searched location or the user's current location.
 
-> **API Key Note:** This project is a frontend-only demonstration of React and API integration. The OpenWeather API key is kept out of the repository using environment variables, but because the application runs entirely in the browser, the key is ultimately accessible to the client. A production application would use a backend to keep the credential private.
+> **API Key Note:** This project is a frontend-only portfolio application built with React and the OpenWeather API. The API key is kept out of the repository using environment variables, but because the application runs entirely in the browser, the key is ultimately accessible to the client. A production application would use a backend to keep the credential private.
 
 ## Features
 
